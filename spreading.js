@@ -1,8 +1,8 @@
 let label = 0;
 
-setInterval(() => {
-    //console.log("healthycount:",healthyCount());
-    //console.log("illcount:",illCount());
+let SI = setInterval(() => {
+    if (illCount() == domNodes.length) {clearInterval(SI)}
+    console.log(illCount())
     healthyData.push(healthyCount())
     illData.push(illCount())
     spreading();
@@ -13,10 +13,10 @@ setInterval(() => {
 function spreading() {
     let ill = []
 
-    fillRedOrGreen();
+    circlePaint();
 
     for(let element of domNodes) {
-        if(element.__data__.health == false) {
+        if(element.__data__.health === 1) {
             ill.push(element.__data__.id)
         }
     }
@@ -24,21 +24,22 @@ function spreading() {
     for(let id of ill) {
         for(let element of domLinks ) {
             if(element.__data__.source.id == id || element.__data__.target.id == id) {
-                if(element.__data__.source.health == false){
-                    element.__data__.target.health = false
+                if(element.__data__.source.health == 1){
+                    element.__data__.target.health = 1
                 }
 
-                if(element.__data__.target.health == false) {
-                    element.__data__.source.health = false
+                if(element.__data__.target.health == 1) {
+                    element.__data__.source.health = 1
                 }
             }
         }
     }
 }
 
-function fillRedOrGreen() {
+function circlePaint() {
     for(let element of domNodes) {
-        element.style.fill = element.__data__.health === true ? "green" : "red";
+        element.style.fill = element.__data__.health === 0 ? "blue" :
+            element.__data__.health === 1 ? "red" : "green";
     }
 }
 

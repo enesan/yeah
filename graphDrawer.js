@@ -1,5 +1,3 @@
-
-
 let svg = d3.select("svg"),
     width = +svg.node().getBoundingClientRect().width,
     height = +svg.node().getBoundingClientRect().height;
@@ -13,27 +11,11 @@ let graph;
 
 
 
-// load the data
-d3.json("json1.json", function(error, _graph) {
-    if (error) throw error;
-    graph = _graph;
-    initializeDisplay();
-    initializeSimulation();
-});
-
-
 
 //////////// FORCE SIMULATION ////////////
 
 // force simulator
 let simulation = d3.forceSimulation();
-
-// set up the simulation and event to update locations after each tick
-function initializeSimulation() {
-    simulation.nodes(graph.nodes);
-    initializeForces();
-    simulation.on("tick", ticked);
-}
 
 // values for all forces
 forceProperties = {
@@ -68,6 +50,23 @@ forceProperties = {
         distance: 30,
         iterations: 1
     }
+}
+
+// load the data
+function loadData() {
+    console.log("graphdata",graphData)
+    graph = graphData;
+    initializeDisplay();
+    initializeSimulation();
+}
+
+loadData.call();
+
+// set up the simulation and event to update locations after each tick
+function initializeSimulation() {
+    simulation.nodes(graph.nodes);
+    initializeForces();
+    simulation.on("tick", ticked);
 }
 
 // add forces to the simulation
@@ -152,8 +151,6 @@ function initializeDisplay() {
 function updateDisplay() {
     node
         .attr("r", forceProperties.collide.radius)
-        //.attr("stroke", forceProperties.charge.strength > 0 ? "blue" : "red")
-        //.attr("stroke-width", forceProperties.charge.enabled==false ? 0 : Math.abs(forceProperties.charge.strength)/15);
 
     link
         .attr("stroke-width", forceProperties.link.enabled ? 1 : .5)
@@ -212,4 +209,3 @@ function updateAll() {
 
 const domNodes = document.getElementsByTagName("circle");
 const domLinks = document.getElementsByTagName("line");
-
