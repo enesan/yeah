@@ -9,9 +9,6 @@ let link, node;
 // the data - an object with nodes and links
 let graph;
 
-
-
-
 //////////// FORCE SIMULATION ////////////
 
 // force simulator
@@ -172,8 +169,6 @@ function ticked() {
     d3.select('#alpha_value').style('flex-basis', (simulation.alpha()*100) + '%');
 
 }
-
-
 
 //////////// UI EVENTS ////////////
 
