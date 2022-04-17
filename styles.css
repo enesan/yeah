@@ -12,6 +12,7 @@ body {
     display: flex;
     font-family: sans-serif;
     font-size: 75%;
+    position: relative;
 }
 
 .controls {
@@ -91,5 +92,11 @@ svg {
     pointer-events: all;
 }
 
+#myChart{
+    position: fixed;
+    border: purple solid 1px;
+    /*height: 600px;*/
+    right: 0px;
+    bottom: 0px;
 
-
+}

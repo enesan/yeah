@@ -1,3 +1,5 @@
+
+
 let svg = d3.select("svg"),
     width = +svg.node().getBoundingClientRect().width,
     height = +svg.node().getBoundingClientRect().height;
@@ -8,6 +10,7 @@ svg.style("fill", "blue");
 let link, node;
 // the data - an object with nodes and links
 let graph;
+
 
 
 // load the data
@@ -35,8 +38,8 @@ function initializeSimulation() {
 // values for all forces
 forceProperties = {
     center: {
-        x: 0.5,
-        y: 0.5
+        x: 0.33,
+        y: 0.38
     },
     charge: {
         enabled: true,
@@ -207,65 +210,6 @@ function updateAll() {
     updateDisplay();
 }
 
-function hello() {
-   let domNodes = document.getElementsByTagName("circle");
-    for(let element of domNodes) {
+const domNodes = document.getElementsByTagName("circle");
+const domLinks = document.getElementsByTagName("line");
 
-        if (element.__data__.health === true) {
-            element.style.fill = "green"
-        }
-        else {
-            element.style.fill = "red"
-        }
-    }
-}
-//window.onclick = hello;
-
-
-
-function editJson(src) {
-    console.log(src)
-}
-
-function spreading() {
-    let domLinks = document.getElementsByTagName("line");
-    let domNodes = document.getElementsByTagName("circle");
-    //.log("domNodes2:", domNodes)
-    hello();
-    let ill = []
-
-    for(let element of domNodes) {
-        if(element.__data__.health == false) {
-            ill.push(element.__data__.id)
-        }
-    }
-
-    console.log(ill)
-    for(let id of ill) {
-        for(let element of domLinks ) {
-            if(element.__data__.source.id == id || element.__data__.target.id == id) {
-                if(element.__data__.source.health == false){
-                    element.__data__.target.health = false
-                }
-                if(element.__data__.target.health == false) {
-                    element.__data__.source.health = false
-                }
-            }
-        }
-    }
-
-    ill = []
-
-    //nodeHealth(graph.nodes)
-
-}
-
-function nodeHealth(nodes) {
-    console.log("\n")
-    for(let node of nodes) {
-        console.log(node.id + " - " + node.health)
-    }
-}
-//window.onclick = editJson(graph);
-setInterval(spreading, 2000);
-//window.onclick = spreading;
