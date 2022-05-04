@@ -1,6 +1,6 @@
 const ctx = document.getElementById('myChart');
 
-let data_count = 12;
+
 let labels = [];
 
 let healthyData = [];
@@ -51,7 +51,7 @@ const data = {
 function fillLabels(label){
     visibleChart.data.labels.push(label)
     visibleChart.update("none")
-    console.log(visibleChart.data.labels)
+   // console.log(visibleChart.data.labels)
 }
 
 

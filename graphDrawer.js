@@ -94,12 +94,6 @@ function updateForces() {
         .strength(forceProperties.collide.strength * forceProperties.collide.enabled)
         .radius(forceProperties.collide.radius)
         .iterations(forceProperties.collide.iterations);
-    simulation.force("forceX")
-        .strength(forceProperties.forceX.strength * forceProperties.forceX.enabled)
-        .x(width * forceProperties.forceX.x);
-    simulation.force("forceY")
-        .strength(forceProperties.forceY.strength * forceProperties.forceY.enabled)
-        .y(height * forceProperties.forceY.y);
     simulation.force("link")
         .id(function(d) {return d.id;})
         .distance(forceProperties.link.distance)
