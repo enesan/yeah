@@ -9,7 +9,7 @@ module.exports = {
   base,
   dest: path.resolve(__dirname, '../../dist/docs'),
   head: [
-    ['link', {rel: 'icon', href: '/favicon.ico'}],
+    // ['link', {rel: 'icon', href: '/favicon.ico'}],
   ],
   plugins: [
     'tabs',

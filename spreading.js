@@ -1,6 +1,6 @@
 let label = 0;
-
 let pauseFlag = false;
+let ill = [];
 
 // завершил сбор вершин вокруг больной
 // далее - распределение болезни с учётом бета
@@ -13,17 +13,28 @@ let intervalSI = setInterval(() => {
         SI();
         // healthyData.push(healthyCount())
         // illData.push(illCount())
-        spreading();
+        circlePaint();
+        infectingEnvironment();
         fillLabels(label);
         label++;
     }
 
 }, 1000);
 
-function spreading() {
-    let ill = []
+function infectingEnvironment() {
+    const env = environmentGathering();
+    console.log(beta)
 
-    circlePaint();
+
+}
+
+function coloringCircles() {
+
+}
+
+function environmentGathering() {
+    ill = []
+    let environment = {};
 
     for (let element of domNodes) {
         if (element.__data__.health === 1) {
@@ -31,79 +42,30 @@ function spreading() {
         }
     }
 
-    infect(ill);
-}
-
-function infect(ill) {
-    const env = environmentGathering(ill);
-    console.log(beta)
-    let illPrevious;
-
-    for (let id of ill) {
-        let nodesOfOneIll = [];
-
-        // заполняем массив здоровых вершин вокруг одной больной
-        for (let element of env) {
-            if (parseInt(Object.keys(element)[0]) == id) {
-                nodesOfOneIll.push(Object.values(element)[0]);
-            }
-        }
-           // console.log(`nodes Of One ${id}:`, nodesOfOneIll)
-
-        // заражаем вершины с вероятностью бета
-
-        for (let domNode of domNodes) {
-            for (let element of nodesOfOneIll) {
-                if (beta > nodesOfOneIll.length) continue;
-
-                if (domNode.__data__.id == element) {
-                    if(beta < 1 && Math.random() < beta) {
-                        domNode.__data__.health = 1;
-                    }
-                    else if(beta >= 1){
-                        if (beta > nodesOfOneIll.length) {
-
-                        }
-                    }
-                }
-            }
-
-            // if (element.__data__.source.id == id || element.__data__.target.id == id) {
-            //     if (element.__data__.source.health == 1) {
-            //         element.__data__.target.health = 1
-            //     }
-            //
-            //     if (element.__data__.target.health == 1) {
-            //         element.__data__.source.health = 1
-            //     }
-            // }
-        }
-    }
-}
-
-function coloringCircles() {
-
-}
-
-function environmentGathering(ill = []) {
-    let environment = [];
-
     for (let id of ill) {
         for (let element of domLinks) {
+            let source = element.__data__.source;
+            let target = element.__data__.target;
 
-            if (element.__data__.source.id == id
-                && !environment.includes({[element.__data__.source.id]: element.__data__.target.id})
-                && element.__data__.target.health == 0) {
-                environment.push({[element.__data__.source.id]: element.__data__.target.id})
-                console.log('first if pushed: ', {[element.__data__.source.id]: element.__data__.target.id})
-            } else if (element.__data__.target.id == id
-                && !environment.includes({[element.__data__.target.id]: element.__data__.source.id})
-                && element.__data__.source.health == 0) {
-                environment.push({[element.__data__.target.id]: element.__data__.source.id})
-                console.log('second if pushed: ', {[element.__data__.target.id]: element.__data__.source.id})
+            if (source.id == id && target.health == 0) {
+                if (!(id in environment)) {
+                    environment[id] = [];
+                }
+                if (!environment[id].includes(element)) {
+                    environment[id].push(element);
+                }
+            } else if (target.id == id && source.health == 0) {
+                if (!(id in environment)) {
+                    environment[id] = [];
+                }
+                if (!environment[id].includes(element)) {
+                    environment[id].push(element);
+                }
             }
         }
+
     }
+
     console.log("ENVIRONMENT", environment)
     return environment;
 }
