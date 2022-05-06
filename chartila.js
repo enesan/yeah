@@ -22,7 +22,7 @@ const data = {
             data: illData,
             borderColor: "#ff0000",
             fill: false,
-            cubicInterpolationMode: 'monotone',
+            cubicInterpolationMode: 'default',
             tension: 0.4
         }, {
             label: 'Recovered',

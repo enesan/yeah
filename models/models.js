@@ -1,4 +1,5 @@
-let beta = 0.5;
+let beta = 0.1;
+let gamma = 1;
 const N = domNodes.length;
 
 function SI() {
@@ -8,8 +9,8 @@ function SI() {
     let ds = -beta * I * S / N;
     let di = beta * I * S / N;
 
- //  console.log(ds);
- //  console.log(di);
+   console.log("ds",ds);
+   console.log("di",di);
 
    // healthyData.push(S + ds);
    // illData.push(I + di);

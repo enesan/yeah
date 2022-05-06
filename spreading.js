@@ -1,37 +1,36 @@
 let label = 0;
 let pauseFlag = false;
 let ill = [];
+let illsInAllTicks = [];
 
 // завершил сбор вершин вокруг больной
 // далее - распределение болезни с учётом бета
 
-let intervalSI = setInterval(() => {
-    if (illCount() == domNodes.length) {
-        clearInterval(intervalSI)
-    }
-    if (pauseFlag == false) {
-        SI();
-        console.log("ill count", illCount())
-        console.log("healthy count", healthyCount())
-        healthyData.push(healthyCount())
-        illData.push(illCount())
-        coloringCircles();
-        markPointsForInfecting();
-        infect();
-
-        fillLabels(label);
-
-        label++;
-    }
-
-}, 1000);
+// let intervalSI = setInterval(() => {
+//     if (illCount() == domNodes.length) {
+//         clearInterval(intervalSI)
+//     }
+//     if (pauseFlag == false) {
+//         SI();
+//         console.log("ill count", illCount())
+//         console.log("healthy count", healthyCount())
+//         healthyData.push(healthyCount())
+//         illData.push(illCount())
+//         coloringCircles();
+//         markPointsForInfecting();
+//         infect();
+//
+//         fillLabels(label);
+//
+//         label++;
+//     }
+//
+// }, 1000);
 
 function infect() {
-    console.log("ill in infect", ill)
     for (let element of ill) {
-        console.log(element)
         let potentialIll = Array.from(domNodes).filter(a => a.__data__.id == element);
-        console.log("potential: ",potentialIll)
+
         if(potentialIll.length > 0) {
             potentialIll[0].__data__.health = 1;
         }
@@ -40,19 +39,16 @@ function infect() {
 
 function markPointsForInfecting() {
     const env = environmentGathering();
-    console.log(beta)
+
     if (beta == 1) {
         for (let key in env) {
             ill = ill.concat(env[key]);
         }
-
-        console.log("ill after:", ill)
     } else {
         for (let key in env) {
             for (let element of env[key]) {
                 if (Math.random() < beta) {
                     ill.push(element);
-                    console.log("randomed ill", ill)
                 }
             }
         }
@@ -62,14 +58,18 @@ function markPointsForInfecting() {
 
 
 function environmentGathering() {
-    ill = []
+  //  console.log("oldIll", ill)
+   ill = []
+
     let environment = {};
 
     for (let element of domNodes) {
-        if (element.__data__.health === 1) {
-            ill.push(element.__data__.id)
+        if (element.__data__.health === 1 && !ill.includes(element.__data__.id)) {
+            ill.push(element.__data__.id);
         }
     }
+
+    console.log("new new ill", ill)
 
     for (let id of ill) {
         for (let element of domLinks) {
@@ -101,7 +101,6 @@ function environmentGathering() {
 
 function coloringCircles() {
     for (let element of domNodes) {
-        //console.log(element.__data__.health)
         element.style.fill = element.__data__.health === 0 ? "blue" :
             element.__data__.health === 1 ? "red" : "green";
     }
@@ -109,5 +108,4 @@ function coloringCircles() {
 
 function pause() {
     pauseFlag === false ? pauseFlag = true : pauseFlag = false;
-
 }

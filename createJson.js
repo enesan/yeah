@@ -3,8 +3,8 @@ let graphData = {
     "links": []
 };
 
-let nodesCount = 15 ;
-let linksCount = 20;
+let nodesCount = 30 ;
+let linksCount = 40;
 let startInfected = 2;
 let infectedArray = [];
 
@@ -14,7 +14,7 @@ for(let i = 0; i < startInfected; i++) {
         infectedArray.push(potentialInfect)
     }
     else {
-        infectedArray.push(Math.random() * nodesCount)
+        infectedArray.push(Math.trunc(Math.random() * nodesCount))
     }
 
 }
