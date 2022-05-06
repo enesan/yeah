@@ -27,7 +27,7 @@ const data = {
         }, {
             label: 'Recovered',
             data: recoveredData,
-            borderColor: "#00FF00",
+            borderColor: "yellowgreen",
             fill: false,
             cubicInterpolationMode: 'monotone',
         }

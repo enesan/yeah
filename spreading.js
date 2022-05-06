@@ -102,7 +102,7 @@ function environmentGathering() {
 function coloringCircles() {
     for (let element of domNodes) {
         element.style.fill = element.__data__.health === 0 ? "blue" :
-            element.__data__.health === 1 ? "red" : "green";
+            element.__data__.health === 1 ? "red" : "yellowgreen";
     }
 }
 

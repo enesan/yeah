@@ -1,5 +1,5 @@
-let beta = 0.1;
-let gamma = 1;
+let beta = 0.9;
+let gamma = 0.9;
 const N = domNodes.length;
 
 function SI() {
