@@ -1,4 +1,4 @@
-let beta = 0.1;
+let beta = 0.5;
 const N = domNodes.length;
 
 function SI() {
@@ -11,6 +11,6 @@ function SI() {
  //  console.log(ds);
  //  console.log(di);
 
-    healthyData.push(S + ds);
-    illData.push(I + di);
+   // healthyData.push(S + ds);
+   // illData.push(I + di);
 }

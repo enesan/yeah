@@ -11,26 +11,55 @@ let intervalSI = setInterval(() => {
     }
     if (pauseFlag == false) {
         SI();
-        // healthyData.push(healthyCount())
-        // illData.push(illCount())
-        circlePaint();
-        infectingEnvironment();
+        console.log("ill count", illCount())
+        console.log("healthy count", healthyCount())
+        healthyData.push(healthyCount())
+        illData.push(illCount())
+        coloringCircles();
+        markPointsForInfecting();
+        infect();
+
         fillLabels(label);
+
         label++;
     }
 
 }, 1000);
 
-function infectingEnvironment() {
+function infect() {
+    console.log("ill in infect", ill)
+    for (let element of ill) {
+        console.log(element)
+        let potentialIll = Array.from(domNodes).filter(a => a.__data__.id == element);
+        console.log("potential: ",potentialIll)
+        if(potentialIll.length > 0) {
+            potentialIll[0].__data__.health = 1;
+        }
+    }
+}
+
+function markPointsForInfecting() {
     const env = environmentGathering();
     console.log(beta)
+    if (beta == 1) {
+        for (let key in env) {
+            ill = ill.concat(env[key]);
+        }
 
-
+        console.log("ill after:", ill)
+    } else {
+        for (let key in env) {
+            for (let element of env[key]) {
+                if (Math.random() < beta) {
+                    ill.push(element);
+                    console.log("randomed ill", ill)
+                }
+            }
+        }
+    }
+    ill = Array.from(new Set(ill));
 }
 
-function coloringCircles() {
-
-}
 
 function environmentGathering() {
     ill = []
@@ -51,15 +80,15 @@ function environmentGathering() {
                 if (!(id in environment)) {
                     environment[id] = [];
                 }
-                if (!environment[id].includes(element)) {
-                    environment[id].push(element);
+                if (!environment[id].includes(target.id)) {
+                    environment[id].push(target.id);
                 }
             } else if (target.id == id && source.health == 0) {
                 if (!(id in environment)) {
                     environment[id] = [];
                 }
-                if (!environment[id].includes(element)) {
-                    environment[id].push(element);
+                if (!environment[id].includes(source.id)) {
+                    environment[id].push(source.id);
                 }
             }
         }
@@ -70,8 +99,9 @@ function environmentGathering() {
     return environment;
 }
 
-function circlePaint() {
+function coloringCircles() {
     for (let element of domNodes) {
+        //console.log(element.__data__.health)
         element.style.fill = element.__data__.health === 0 ? "blue" :
             element.__data__.health === 1 ? "red" : "green";
     }

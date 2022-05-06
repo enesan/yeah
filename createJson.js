@@ -3,13 +3,13 @@ let graphData = {
     "links": []
 };
 
-let nodesCount = 15;
+let nodesCount = 15 ;
 let linksCount = 20;
 let startInfected = 2;
 let infectedArray = [];
 
 for(let i = 0; i < startInfected; i++) {
-    let potentialInfect = Math.floor(Math.random() * nodesCount);
+    let potentialInfect = Math.trunc(Math.random() * nodesCount);
     if (!infectedArray.includes(potentialInfect)) {
         infectedArray.push(potentialInfect)
     }
