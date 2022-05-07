@@ -1,6 +1,5 @@
 const ctx = document.getElementById('myChart');
 
-
 let labels = [];
 
 let healthyData = [];
@@ -15,21 +14,23 @@ const data = {
             data: healthyData,
             borderColor: "#0000ff",
             fill: false,
-            cubicInterpolationMode: 'monotone',
-            tension: 0.4
+            cubicInterpolationMode: 'default',
+            tension: 0.3
+
         }, {
             label: 'ill',
             data: illData,
             borderColor: "#ff0000",
             fill: false,
             cubicInterpolationMode: 'default',
-            tension: 0.4
+            tension: 0.3
         }, {
             label: 'Recovered',
             data: recoveredData,
             borderColor: "yellowgreen",
             fill: false,
-            cubicInterpolationMode: 'monotone',
+            cubicInterpolationMode: 'default',
+            tension: 0.3
         }
     ]
 };
@@ -51,7 +52,6 @@ const data = {
 function fillLabels(label){
     visibleChart.data.labels.push(label)
     visibleChart.update("none")
-   // console.log(visibleChart.data.labels)
 }
 
 
