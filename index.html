@@ -15,6 +15,10 @@
 <h4 id="1"></h4>
 <div class="controls">
     <button id="btnPause" onclick="pause()">Пауза</button>
+    <form>
+        <input type="number" id="nodes" placeholder="nodesCount" onchange="fillNodes()" min="1" value="44">
+        <input type="number" id="links" placeholder="linksCount" min="1">
+    </form>
     <div class="force alpha">
         <p><label id="a">alpha</label> Simulation activity</p>
         <div class="alpha_bar" onclick="updateAll();"><div id="alpha_value"></div></div>
