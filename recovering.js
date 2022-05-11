@@ -5,9 +5,6 @@ let intervalSIR = setInterval(() => {
         clearInterval(intervalSIR)
     }
     if (pauseFlag == false) {
-        // console.log("ill count", illCount())
-        // console.log("healthy count", healthyCount())
-
         healthyData.push(healthyCount())
         illData.push(illCount())
         recoveredData.push(recoveredCount())

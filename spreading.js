@@ -58,7 +58,6 @@ function markPointsForInfecting() {
 
 
 function environmentGathering() {
-  //  console.log("oldIll", ill)
    ill = []
 
     let environment = {};
@@ -68,8 +67,6 @@ function environmentGathering() {
             ill.push(element.__data__.id);
         }
     }
-
-    console.log("new new ill", ill)
 
     for (let id of ill) {
         for (let element of domLinks) {
@@ -95,7 +92,6 @@ function environmentGathering() {
 
     }
 
-    console.log("ENVIRONMENT", environment)
     return environment;
 }
 
