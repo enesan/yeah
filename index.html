@@ -19,10 +19,10 @@
         <input type="number" id="nodes" placeholder="nodesCount" onchange="fillNodes()" min="1" value="44">
         <input type="number" id="links" placeholder="linksCount" min="1">
     </form>
-    <div class="force alpha">
-        <p><label id="a">alpha</label> Simulation activity</p>
-        <div class="alpha_bar" onclick="updateAll();"><div id="alpha_value"></div></div>
-    </div>
+<!--    <div class="force alpha">-->
+<!--        <p><label id="a">alpha</label> Simulation activity</p>-->
+<!--        <div class="alpha_bar" onclick="updateAll();"><div id="alpha_value"></div></div>-->
+<!--    </div>-->
     <div class="force">
         <p><label>center</label> Shifts the view, so the graph is centered at this location.</p>
         <label>
@@ -55,24 +55,24 @@
         </label>
     </div>
 
-    <div class="force">
-        <p><label><input type="checkbox" checked onchange="forceProperties.collide.enabled = this.checked; updateAll();"> collide</label> Prevents nodes from overlapping</p>
-        <label>
-            strength
-            <output id="collide_StrengthSliderOutput">.7</output>
-            <input type="range" min="0" max="2" value=".7" step=".1" oninput="d3.select('#collide_StrengthSliderOutput').text(value); forceProperties.collide.strength=value; updateAll();">
-        </label>
-        <label title="Size of nodes">
-            radius
-            <output id="collide_radiusSliderOutput">5</output>
-            <input type="range" min="0" max="100" value="5" step="1" oninput="d3.select('#collide_radiusSliderOutput').text(value); forceProperties.collide.radius=value; updateAll();">
-        </label>
-        <label title="Higher values increase rigidity of the nodes (WARNING: high values are computationally expensive)">
-            iterations
-            <output id="collide_iterationsSliderOutput">1</output>
-            <input type="range" min="1" max="10" value="1" step="1" oninput="d3.select('#collide_iterationsSliderOutput').text(value); forceProperties.collide.iterations=value; updateAll();">
-        </label>
-    </div>
+<!--    <div class="force">-->
+<!--        <p><label><input type="checkbox" checked onchange="forceProperties.collide.enabled = this.checked; updateAll();"> collide</label> Prevents nodes from overlapping</p>-->
+<!--        <label>-->
+<!--            strength-->
+<!--            <output id="collide_StrengthSliderOutput">.7</output>-->
+<!--            <input type="range" min="0" max="2" value=".7" step=".1" oninput="d3.select('#collide_StrengthSliderOutput').text(value); forceProperties.collide.strength=value; updateAll();">-->
+<!--        </label>-->
+<!--        <label title="Size of nodes">-->
+<!--            radius-->
+<!--            <output id="collide_radiusSliderOutput">5</output>-->
+<!--            <input type="range" min="0" max="100" value="5" step="1" oninput="d3.select('#collide_radiusSliderOutput').text(value); forceProperties.collide.radius=value; updateAll();">-->
+<!--        </label>-->
+<!--        <label title="Higher values increase rigidity of the nodes (WARNING: high values are computationally expensive)">-->
+<!--            iterations-->
+<!--            <output id="collide_iterationsSliderOutput">1</output>-->
+<!--            <input type="range" min="1" max="10" value="1" step="1" oninput="d3.select('#collide_iterationsSliderOutput').text(value); forceProperties.collide.iterations=value; updateAll();">-->
+<!--        </label>-->
+<!--    </div>-->
 
     <div class="force">
         <p><label><input type="checkbox" checked onchange="forceProperties.link.enabled = this.checked; updateAll();"> link</label> Sets link length</p>
@@ -96,6 +96,7 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="createJson.js"></script>
+<script src="powerLaw.js"></script>
 <script src="graphDrawer.js"></script>
 <script src="amountDef.js"></script>
 <script src="models/models.js"></script>

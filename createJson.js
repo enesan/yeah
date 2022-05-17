@@ -3,22 +3,23 @@ let graphData = {
     "links": []
 };
 
-let nodesCount = 500
-let linksCount = 0
+let nodesCount = 100
+let linksCount = 200
 console.log("Ncount1", nodesCount)
 let startInfected = 2;
 let infectedArray = [];
 let alpha = 2.5;
 m = 5
 let linkedNodes = [];
-let degrees = [];
+let degrees = Array(nodesCount);
+let finalDegrees = Array(nodesCount);
 let helperAntiCollision = Array(nodesCount)
 
 initialInfect();
 makeNodes();
 tooManyLinksExc();
 //makeLinksGnm();
-makeLinksPowerLaw();
+
 
 
 function initialInfect() {
@@ -62,6 +63,10 @@ function tooManyLinksExc() {
 
 function makeLinksGnm() {
     let source = 0;
+    for(let i = 0; i < finalDegrees.length; i++) {
+        finalDegrees[i] = 0;
+    }
+
 
     for (let i = 0; i < nodesCount; i++) {
         helperAntiCollision[i] = 0;
@@ -98,10 +103,15 @@ function makeLinksGnm() {
             "source": source,
             "target": target
         });
+
+        finalDegrees[source]++;
+        finalDegrees[target]++;
     }
 }
 
+console.log(graphData)
 
+console.log("final degrees" + finalDegrees)
 // m0 = 2, m =2
 function makeLinksBa() {
     let target = 0;
@@ -194,57 +204,7 @@ function addableLinksCountCorrection(degrees, passToConnect, m) {
 }
 
 
-function makeLinksPowerLaw() {
-    degrees = makeDistribution(alpha, m)
 
-    for (let source = 1; source < degrees.length; source++) {
-        if (source <= m) {
-            for (let j = 0; j < source; j++) {
-                let target = j;
-                graphData.links.push({
-                    "source": source,
-                    "target": target
-                });
-                degrees[target]--;
-                degrees[source]--;
-            }
-            continue;
-        }
-        for (let targetNumber = 0; targetNumber < m; targetNumber++) {
-            let target = Math.trunc(Math.random() * source);
 
-            target = checkTarget(source,target);
 
-            graphData.links.push({
-                "source": source,
-                "target": target
-            });
-            --degrees[source];
-            --degrees[target];
-            console.log(source, ":", target)
-            console.log(degrees.slice(0,source))
-        }
-    }
-}
-
-function checkTarget(source, target) {
-    while (degrees[target] === 0 || target === source) {
-        target = Math.trunc(Math.random() * source);
-        //console.log("while")
-    }
-    return target;
-}
-
-function makeDistribution(alpha = 2.5, m = 5) {
-
-    for (let i = 0; i < nodesCount; i++) {
-        let probability = Math.random();
-        let xx = Math.trunc((m - 0.5) * Math.pow(1 - probability, -1 / (alpha - 1)) + 0.5);
-        degrees.push(xx);
-    }
-    console.log("degrees1", degrees)
-    return degrees;
-}
-
-console.log("degrees", degrees)
 

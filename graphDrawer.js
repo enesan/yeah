@@ -32,16 +32,6 @@ forceProperties = {
         iterations: 1,
         radius: 5
     },
-    forceX: {
-        enabled: false,
-        strength: .1,
-        x: .5
-    },
-    forceY: {
-        enabled: false,
-        strength: .1,
-        y: .5
-    },
     link: {
         enabled: true,
         distance: 30,
@@ -136,7 +126,7 @@ function initializeDisplay() {
     updateDisplay();
 
 
-}
+}console.log("hello", finalDegrees.find(x => node.id == finalDegrees.indexOf(x)))
 
 // update the display based on the forces (but not positions)
 function updateDisplay() {
