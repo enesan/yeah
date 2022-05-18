@@ -4,7 +4,7 @@ let intervalSIR = setInterval(() => {
     if (illCount() == domNodes.length || illCount() == 0) {
         clearInterval(intervalSIR)
     }
-    if (pauseFlag == false) {
+    if (stopFlag == false) {
         healthyData.push(healthyCount())
         illData.push(illCount())
         recoveredData.push(recoveredCount())

@@ -3,8 +3,8 @@ let graphData = {
     "links": []
 };
 
-let nodesCount = 50
-let linksCount = 100
+let nodesCount1 = 100;
+let linksCount = 100;
 let startInfected = 2;
 let infectedArray = [];
 let m = 5
@@ -14,26 +14,29 @@ let gamma = 0.4;
 
 initialInfect();
 makeNodes();
-let net = new BarabasiNetwork(nodesCount, m);
-//let net = new gnmNetwork(nodesCount, linksCount);
+
+NetworkAbstract.nodesCount = nodesCount1;
+console.log(NetworkAbstract.degrees)
+//let net = new BarabasiNetwork(m);
+let net = new gnmNetwork(linksCount);
 
 net.makeLinks();
 
 
 function initialInfect() {
     for (let i = 0; i < startInfected; i++) {
-        let potentialInfect = Math.trunc(Math.random() * nodesCount);
+        let potentialInfect = Math.trunc(Math.random() * nodesCount1);
         if (!infectedArray.includes(potentialInfect)) {
             infectedArray.push(potentialInfect)
         } else {
-            infectedArray.push(Math.trunc(Math.random() * nodesCount))
+            infectedArray.push(Math.trunc(Math.random() * nodesCount1))
         }
     }
     console.log(infectedArray)
 }
 
 function makeNodes() {
-    for (let i = 0; i < nodesCount; i++) {
+    for (let i = 0; i < nodesCount1; i++) {
         if (infectedArray.includes(i)) {
             graphData.nodes.push({
                 "id": i,
