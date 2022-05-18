@@ -1,8 +1,4 @@
-let label = 0;
-let stopFlag = false;
 let ill = [];
-let illsInAllTicks = [];
-let day = 2;
 
 function infect() {
     for (let element of ill) {
@@ -71,13 +67,6 @@ function environmentGathering() {
     return environment;
 }
 
-function coloringCircles() {
-    for (let element of domNodes) {
-        element.style.fill = element.__data__.health === 0 ? "blue" :
-            element.__data__.health === 1 ? "red" : "yellowgreen";
-    }
-}
 
-function pause() {
-    stopFlag === false ? stopFlag = true : stopFlag = false;
-}
+
+

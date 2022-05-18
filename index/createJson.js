@@ -16,9 +16,8 @@ initialInfect();
 makeNodes();
 
 NetworkAbstract.nodesCount = nodesCount1;
-console.log(NetworkAbstract.degrees)
-//let net = new BarabasiNetwork(m);
-let net = new gnmNetwork(linksCount);
+let net = new BarabasiNetwork(m);
+//let net = new gnmNetwork(linksCount);
 
 net.makeLinks();
 
@@ -32,7 +31,6 @@ function initialInfect() {
             infectedArray.push(Math.trunc(Math.random() * nodesCount1))
         }
     }
-    console.log(infectedArray)
 }
 
 function makeNodes() {

@@ -9,29 +9,32 @@ class BarabasiNetwork extends NetworkAbstract {
         super.makeLinks();
 
         for (let source = 1; source < NetworkAbstract._nodesCount; source++) {
-            if (source <= m) {
-                for (let j = 0; j < source; j++) {
-                    let target = j;
-                    this.addLink(source, target)
-                }
+            if (source <= this.m) {
+                this.initialLinking(source);
                 continue;
             }
 
-
-            for (let targetNumber = 0; targetNumber < m; targetNumber++) {
-                let target = Math.trunc(Math.random() * source);
-
-                target = this.checkTarget(source, target);
-                this.addLink(source, target);
-            }
+            this.linking(source);
         }
     }
 
-    addLink(source, target) {
-        super.addLink(source, target);
-        ++NetworkAbstract.degrees[source];
-        ++NetworkAbstract.degrees[target];
+    initialLinking(source) {
+        for (let j = 0; j < source; j++) {
+            let target = j;
+            this.addLink(source, target)
+        }
     }
+
+    linking(source) {
+        for (let targetNumber = 0; targetNumber < this.m; targetNumber++) {
+            let target = Math.trunc(Math.random() * source);
+
+            target = this.checkTarget(source, target);
+            this.addLink(source, target);
+        }
+    }
+
+
 
     checkTarget(source, target, fromCheckLinks = false) {
         let random = Math.random() * Math.max(...(NetworkAbstract.degrees.slice(0, source)));

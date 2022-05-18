@@ -189,3 +189,10 @@ function updateAll() {
 
 const domNodes = document.getElementsByTagName("circle");
 const domLinks = document.getElementsByTagName("line");
+
+function coloringCircles() {
+    for (let element of domNodes) {
+        element.style.fill = element.__data__.health === 0 ? "blue" :
+            element.__data__.health === 1 ? "red" : "yellowgreen";
+    }
+}

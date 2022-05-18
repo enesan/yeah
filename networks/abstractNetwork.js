@@ -27,7 +27,8 @@ class NetworkAbstract {
             "source": source,
             "target": target
         });
-
+        ++NetworkAbstract.degrees[source];
+        ++NetworkAbstract.degrees[target];
     }
 }
 
