@@ -1,4 +1,4 @@
-let day = 2;
+
 
 let intervalSIR = setInterval(() => {
     if (illCount() == domNodes.length || illCount() == 0) {
@@ -12,8 +12,9 @@ let intervalSIR = setInterval(() => {
         markPointsForInfecting();
         infect();
         if(label >= day) {
+            let recoveringFunction = backToR();
             //backToS();
-            backToR();
+           // backToR();
         }
         fillLabels(label);
         label++;

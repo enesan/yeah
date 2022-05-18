@@ -121,12 +121,13 @@ function initializeDisplay() {
 
     // node tooltip
     node.append("title")
-        .text(function(d) { return d.id; });
+        .text(function (d) {
+            return d.id;
+        });
     // visualize the graph
     updateDisplay();
+}
 
-
-}console.log("hello", finalDegrees.find(x => node.id == finalDegrees.indexOf(x)))
 
 // update the display based on the forces (but not positions)
 function updateDisplay() {
