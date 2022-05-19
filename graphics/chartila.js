@@ -1,7 +1,6 @@
 const ctx = document.getElementById('myChart');
 
-let labels = [];
-
+let labels = []
 let healthyData = [];
 let illData = [];
 let recoveredData = [];
@@ -35,7 +34,14 @@ const data = {
     ]
 };
 
-    const visibleChart = new Chart(ctx, {
+
+
+function createChart () {
+    if(window.visibleChart != undefined) {
+      window.visibleChart.destroy();
+    }
+
+    window.visibleChart = new Chart(ctx, {
         type: 'line',
         data: data,
         options: {
@@ -48,12 +54,19 @@ const data = {
             }
         }
     });
-
-function fillLabels(label){
-    visibleChart.data.labels.push(label)
-    visibleChart.update("none")
 }
 
+function fillLabels(label){
+    window.visibleChart.data.labels.push(label)
+    window.visibleChart.update("none")
+}
+
+function clearChartData() {
+    labels.length = 0;
+    illData.length = 0;
+    recoveredData.length = 0;
+    healthyData.length = 0;
+}
 
 
 

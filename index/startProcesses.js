@@ -1,30 +1,39 @@
-let stopFlag = false;
+let pauseFlag = false;
 let day = 2;
-let label = 0;
 
-let intervalSIR = setInterval(() => {
-    if (illCount() == domNodes.length || illCount() == 0) {
-        clearInterval(intervalSIR)
-    }
-    if (stopFlag == false) {
-        healthyData.push(healthyCount())
-        illData.push(illCount())
-        recoveredData.push(recoveredCount())
-        coloringCircles();
-        markPointsForInfecting();
-        infect();
-        if(label >= day) {
-            let recoveringFunction = backToR();
-            //backToS();
-           // backToR();
+
+function startProcesses(){
+    let label = 0;
+   let intervalSIR = setInterval(() => {
+        if (illCount() == domNodes.length || illCount() == 0) {
+            clearInterval(intervalSIR)
         }
-        fillLabels(label);
-        label++;
-    }
+        if (pauseFlag == false) {
+            healthyData.push(healthyCount())
+            illData.push(illCount())
+            recoveredData.push(recoveredCount())
+            coloringCircles();
+            markPointsForInfecting();
+            infect();
+            if(label >= day) {
+                let recoveringFunction = backToR();
+                //backToS();
+                // backToR();
+            }
+            fillLabels(label);
+            label++;
+        }
 
-}, 1000);
+    }, 1000);
+}
 
 function pause() {
-    stopFlag === false ? stopFlag = true : stopFlag = false;
+   pauseFlag = (pauseFlag === false ? true : false);
+}
+
+function restartProcesses() {
+    document.getElementById("myChart").innerHTML = ""
+    pauseFlag = false;
+    label = 0;
 }
 

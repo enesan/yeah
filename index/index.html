@@ -8,17 +8,16 @@
         <meta charset="UTF-8">
         <title>Title</title>
     <link rel="stylesheet" href="styles.css">
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
-
-<h4 id="1"></h4>
 <div class="controls">
     <button id="btnPause" onclick="pause()">Пауза</button>
-    <form>
+    <button id="btnReload" onclick="start()">перезагрузка</button>
         <input type="number" id="nodes" placeholder="nodesCount" onchange="fillNodes()" min="1" value="44">
         <input type="number" id="links" placeholder="linksCount" min="1">
-    </form>
+
 <!--    <div class="force alpha">-->
 <!--        <p><label id="a">alpha</label> Simulation activity</p>-->
 <!--        <div class="alpha_bar" onclick="updateAll();"><div id="alpha_value"></div></div>-->
@@ -88,17 +87,14 @@
         </label>
     </div>
 </div>
-<h4 class="1"></h4>
 <svg id="svgI"></svg>
 <canvas id="myChart" width="600"></canvas>
 <canvas id="distribution" style="border: 1px blue solid" width="600"></canvas>
-<h4 class="1"></h4>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script src="https://d3js.org/d3.v4.min.js"></script>
+
 <script src="../networks/abstractNetwork.js"></script>
 <script src="../networks/barabasiNetwork.js"></script>
 <script src="../networks/gnmNetwork.js"></script>
-<script src="createJson.js"></script>
+<script src="startSimulation.js"></script>
 <script src="../graphics/distribution.js"></script>
 <script src="graphDrawer.js"></script>
 <script src="amountDef.js"></script>
@@ -106,5 +102,6 @@
 <script src="../models/infecting.js"></script>
 <script src="../models/recovering.js"></script>
 <script src="../index/startProcesses.js"></script>
+<script src="restartFunction.js"></script>
 </body>
 </html>
