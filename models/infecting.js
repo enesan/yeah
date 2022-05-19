@@ -1,31 +1,4 @@
-let label = 0;
-let pauseFlag = false;
 let ill = [];
-let illsInAllTicks = [];
-
-// завершил сбор вершин вокруг больной
-// далее - распределение болезни с учётом бета
-
-// let intervalSI = setInterval(() => {
-//     if (illCount() == domNodes.length) {
-//         clearInterval(intervalSI)
-//     }
-//     if (pauseFlag == false) {
-//         SI();
-//         console.log("ill count", illCount())
-//         console.log("healthy count", healthyCount())
-//         healthyData.push(healthyCount())
-//         illData.push(illCount())
-//         coloringCircles();
-//         markPointsForInfecting();
-//         infect();
-//
-//         fillLabels(label);
-//
-//         label++;
-//     }
-//
-// }, 1000);
 
 function infect() {
     for (let element of ill) {
@@ -89,19 +62,11 @@ function environmentGathering() {
                 }
             }
         }
-
     }
 
     return environment;
 }
 
-function coloringCircles() {
-    for (let element of domNodes) {
-        element.style.fill = element.__data__.health === 0 ? "blue" :
-            element.__data__.health === 1 ? "red" : "yellowgreen";
-    }
-}
 
-function pause() {
-    pauseFlag === false ? pauseFlag = true : pauseFlag = false;
-}
+
+
