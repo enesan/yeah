@@ -1,72 +1,70 @@
-const ctx = document.getElementById('myChart');
+class Chartila extends ChartsClass {
+   static _ctx = document.getElementById('myChart');
 
-let labels = []
-let healthyData = [];
-let illData = [];
-let recoveredData = [];
+    static labels = [];
+    static healthyData = [];
+    static illData = [];
+    static recoveredData = [];
 
-const data = {
-    labels: labels,
-    datasets: [
-        {
-            label: 'Susceptible',
-            data: healthyData,
-            borderColor: "#0000ff",
-            fill: false,
-            cubicInterpolationMode: 'default',
-            tension: 0.3
+   static _data = {
+        labels: Chartila.labels,
+        datasets: [
+            {
+                label: 'Susceptible',
+                data: Chartila.healthyData,
+                borderColor: "#0000ff",
+                fill: false,
+                cubicInterpolationMode: 'default',
+                tension: 0.3
 
-        }, {
-            label: 'ill',
-            data: illData,
-            borderColor: "#ff0000",
-            fill: false,
-            cubicInterpolationMode: 'default',
-            tension: 0.3
-        }, {
-            label: 'Recovered',
-            data: recoveredData,
-            borderColor: "yellowgreen",
-            fill: false,
-            cubicInterpolationMode: 'default',
-            tension: 0.3
+            }, {
+                label: 'ill',
+                data: Chartila.illData,
+                borderColor: "#ff0000",
+                fill: false,
+                cubicInterpolationMode: 'default',
+                tension: 0.3
+            }, {
+                label: 'Recovered',
+                data: Chartila.recoveredData,
+                borderColor: "yellowgreen",
+                fill: false,
+                cubicInterpolationMode: 'default',
+                tension: 0.3
+            }
+        ]
+    };
+
+   static _config = {
+       type: 'line',
+       data: this._data,
+       options: {
+           responsive: false,
+           scales: {
+               y: {
+                   beginAtZero: false
+               }
+           }
+       }
+   }
+
+    static createChart() {
+        if (window.visibleChart != undefined) {
+            this._clearChartData();
+            window.visibleChart.destroy();
         }
-    ]
-};
-
-
-
-function createChart () {
-    if(window.visibleChart != undefined) {
-      window.visibleChart.destroy();
+        window.visibleChart = new Chart(this._ctx, this._config);
     }
 
-    window.visibleChart = new Chart(ctx, {
-        type: 'line',
-        data: data,
-        options: {
-            responsive: false,
-            //maintainAspectRatio:true,
-            scales: {
-                y: {
-                    beginAtZero: false
-                }
-            }
-        }
-    });
+    static fillLabels(label) {
+        window.visibleChart.data.labels.push(label)
+        window.visibleChart.update("none")
+    }
+
+    static _clearChartData() {
+        Chartila.labels.length = 0;
+        Chartila.illData.length = 0;
+        Chartila.recoveredData.length = 0;
+        Chartila.healthyData.length = 0;
+    }
 }
-
-function fillLabels(label){
-    window.visibleChart.data.labels.push(label)
-    window.visibleChart.update("none")
-}
-
-function clearChartData() {
-    labels.length = 0;
-    illData.length = 0;
-    recoveredData.length = 0;
-    healthyData.length = 0;
-}
-
-
-

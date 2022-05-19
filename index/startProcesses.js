@@ -9,9 +9,9 @@ function startProcesses(){
             clearInterval(intervalSIR)
         }
         if (pauseFlag == false) {
-            healthyData.push(healthyCount())
-            illData.push(illCount())
-            recoveredData.push(recoveredCount())
+            Chartila.healthyData.push(healthyCount())
+            Chartila.illData.push(illCount())
+            Chartila.recoveredData.push(recoveredCount())
             coloringCircles();
             markPointsForInfecting();
             infect();
@@ -20,7 +20,7 @@ function startProcesses(){
                 //backToS();
                 // backToR();
             }
-            fillLabels(label);
+            Chartila.fillLabels(label);
             label++;
         }
 
