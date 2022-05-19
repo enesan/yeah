@@ -35,7 +35,7 @@ class Chartila extends ChartsClass {
         ]
     };
 
-   static _config = {
+   static #config = {
        type: 'line',
        data: this._data,
        options: {
@@ -53,7 +53,7 @@ class Chartila extends ChartsClass {
             this._clearChartData();
             window.visibleChart.destroy();
         }
-        window.visibleChart = new Chart(this._ctx, this._config);
+        window.visibleChart = new Chart(this._ctx, this.#config);
     }
 
     static fillLabels(label) {
