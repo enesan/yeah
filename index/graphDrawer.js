@@ -2,6 +2,13 @@ let svg = d3.select("svg"),
     width = +svg.node().getBoundingClientRect().width,
     height = +svg.node().getBoundingClientRect().height;
 
+function initSvg() {
+    if(svg != undefined) {
+        svg.selectAll("g").remove();
+    }
+}
+initSvg.call();
+
 svg.style("fill", "blue");
 
 // svg objects
@@ -45,6 +52,7 @@ function loadData() {
     graph = graphData;
     initializeDisplay();
     initializeSimulation();
+
 }
 
 loadData.call();
