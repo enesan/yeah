@@ -8,8 +8,8 @@ let linksCount = document.getElementById("linksInput").value;
 let initialInfected = document.getElementById("initial_infected").value;
 let infectedArray = [];
 let m = document.getElementById("m").value;
-let beta = 0.7;
-let gamma = 0.4;
+let beta = document.getElementById("beta").value;
+let gamma = document.getElementById("gamma").value;
 let networkModel = () => {
     let net = document.getElementById("network_choice").options.selectedIndex;
     switch (net) {

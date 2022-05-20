@@ -34,3 +34,13 @@ function changeProcess() {
     recoveringFunction();
     start();
 }
+
+function changeBeta() {
+    beta = document.getElementById("beta").value;
+    start();
+}
+
+function changeGamma() {
+    beta = document.getElementById("gamma").value;
+    start();
+}
