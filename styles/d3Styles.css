@@ -5,13 +5,13 @@ body {
     display: flex;
     font-family: sans-serif;
     font-size: 75%;
-    position: relative;
-
 }
 
 .controls {
-    flex-basis: 200px;
+    flex-basis: 240px;
     padding: 0 5px;
+    height: 100vh;
+    overflow-y: scroll;
 }
 
 .controls .force {

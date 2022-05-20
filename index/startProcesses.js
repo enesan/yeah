@@ -13,9 +13,13 @@ let recoveringFunction = () => {
     }
 };
 
+let intervalSIR;
 function startProcesses(){
+    if(intervalSIR) {
+        clearInterval(intervalSIR);
+    }
     let label = 0;
-   let intervalSIR = setInterval(() => {
+    intervalSIR = setInterval(() => {
         if (illCount() == domNodes.length || illCount() == 0) {
             clearInterval(intervalSIR)
         }

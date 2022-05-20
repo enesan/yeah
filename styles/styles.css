@@ -6,13 +6,6 @@
     bottom: 0px;
 }
 
-#distribution{
-    position: fixed;
-    /*border: purple solid 1px;*/
-    right: 0px;
-    top: 0px;
-}
-
 .force .cell {
     display: flex;
     margin-bottom: 5px;
@@ -25,4 +18,35 @@
 
 .force .cell label {
     font-size: 110%;
+}
+
+select{
+    margin-bottom: 5px;
+}
+
+.chartAndTabs {
+    position: fixed;
+    right: 0px;
+    top: 0px;
+}
+
+.tabs{
+    background-color: #fafafa;
+    display: flex;
+}
+
+.tabs button {
+    background-color: inherit;
+    border:none;
+    cursor: pointer;
+    padding: 8px;
+    transition: 0.3s;
+}
+
+.tabs button:hover{
+    background-color: #ddd;
+}
+
+.tabs button.active {
+    background-color: #d1d1d1;
 }

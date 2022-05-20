@@ -44,3 +44,21 @@ function changeGamma() {
     beta = document.getElementById("gamma").value;
     start();
 }
+
+function changeDistributionScale(scale) {
+    switch (scale){
+        case "linear":
+            DistributionChart.scale = "linear";
+            break;
+        case "logarithmic":
+            DistributionChart.scale = "logarithmic";
+            break;
+    }
+
+    let tabs = document.getElementsByClassName("tablinks");
+    for(let i =0; i < tabs.length; i++) {
+       tabs[i].className = tabs[i].className.replace("active", "");
+    }
+
+    document.getElementById(scale).className += " active";
+}

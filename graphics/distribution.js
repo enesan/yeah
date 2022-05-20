@@ -3,6 +3,16 @@ class DistributionChart extends ChartsClass {
 
     static #dataArray = []
     static #graphDegrees = []
+    static #scale = "linear";
+
+    static get scale() {
+        return this.#scale;
+    }
+
+    static set scale(value) {
+        this.#scale = value;
+        this.createChart();
+    }
 
     static _data = {
         datasets: [{
@@ -11,6 +21,7 @@ class DistributionChart extends ChartsClass {
             backgroundColor: 'rgb(255, 99, 132)'
         }],
     };
+
 
     static createChart() {
         if (window.distributionChart != undefined) {
@@ -27,12 +38,12 @@ class DistributionChart extends ChartsClass {
                 responsive: false,
                 scales: {
                     x: {
-                        type: 'linear',
+                        type: this.#scale,
                         position: 'bottom',
                         max: Math.max(...DistributionChart.#graphDegrees) + 10
                     },
                     y:{
-                        type: 'linear',
+                        type: this.#scale,
                         max: this.#chooseMaxY() + 0.1
                     }
                 }

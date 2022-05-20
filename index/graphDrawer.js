@@ -24,12 +24,12 @@ let simulation = d3.forceSimulation();
 // values for all forces
 forceProperties = {
     center: {
-        x: 0.33,
-        y: 0.38
+        x: 0.3,
+        y: 0.45
     },
     charge: {
         enabled: true,
-        strength: -30,
+        strength: -60,
         distanceMin: 1,
         distanceMax: 2000
     },
