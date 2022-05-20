@@ -29,3 +29,8 @@ function changeRecoveringDay() {
     day = d3.select("#recovering_start_day").property("value");
     start();
 }
+
+function changeProcess() {
+    recoveringFunction();
+    start();
+}

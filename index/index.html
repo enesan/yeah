@@ -15,7 +15,12 @@
         <button id="btnReload" onclick="start()">перезагрузка</button>
         <select id="network_choice" onchange="chooseNetwork()">
             <option value="rnd">Erdyos-Renyi (Gnm)</option>
-            <option value="ba">Barabasi-Albert (linear PA)</option>
+            <option selected value="ba">Barabasi-Albert (linear PA)</option>
+        </select>
+        <select id="process_choice" onchange="changeProcess()">
+            <option value="si">SI</option>
+            <option value="sis">SIS</option>
+            <option value="sir">SIR</option>
         </select>
         <input type="number" id="nodesInput" placeholder="nodesCount" onchange="changeNodes()" min="2" value="50">
         <input type="number" id="linksInput" placeholder="linksCount" onchange="changeLinks()" min="1" value="50">

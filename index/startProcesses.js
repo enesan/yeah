@@ -1,6 +1,17 @@
 let pauseFlag = false;
 let day = 2;
-
+let recoveringFunction = () => {
+    let selectedProcess = document.getElementById("process_choice").options.selectedIndex;;
+    switch (selectedProcess) {
+        case 0: return;
+        case 1:
+            backToS();
+            break;
+        case 2:
+            backToR();
+            break;
+    }
+};
 
 function startProcesses(){
     let label = 0;
@@ -16,9 +27,7 @@ function startProcesses(){
             markPointsForInfecting();
             infect();
             if(label >= day - 1) {
-                let recoveringFunction = backToR();
-                //backToS();
-                // backToR();
+                recoveringFunction();
             }
             Chartila.fillLabels(label);
             label++;
@@ -30,5 +39,6 @@ function startProcesses(){
 function pause() {
    pauseFlag = (pauseFlag === false ? true : false);
 }
+
 
 
