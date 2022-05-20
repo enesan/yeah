@@ -13,91 +13,109 @@
     <div class="force">
         <button id="btnPause" onclick="pause()">Пауза</button>
         <button id="btnReload" onclick="start()">перезагрузка</button>
+    </div>
+    <div class="force">
+        <p><label>Network and Process Model</label></p>
         <select id="network_choice" onchange="chooseNetwork()">
             <option value="rnd">Erdyos-Renyi (Gnm)</option>
             <option selected value="ba">Barabasi-Albert (linear PA)</option>
         </select>
         <select id="process_choice" onchange="changeProcess()">
             <option value="si">SI</option>
-            <option value="sis">SIS</option>
+            <option selected value="sis">SIS</option>
             <option value="sir">SIR</option>
         </select>
-        <input type="number" id="nodesInput" placeholder="nodesCount" onchange="changeNodes()" min="2" value="50">
-        <input type="number" id="linksInput" placeholder="linksCount" onchange="changeLinks()" min="1" value="50">
-        <input type="number" id="m" placeholder="m" onchange="changeM()" min="1" value="3">
-        <input type="number" id="initial_infected" placeholder="Initial infected" onchange="changeInitInfected()" min="1" value="2">
-        <input type="number" id="recovering_start_day" placeholder="Recovering start day" onchange="changeRecoveringDay()" min="1" value="2">
-        <input type="number" id="beta" placeholder="beta" onchange="changeBeta()" min="0.1" step="0.05" value="0.9">
-        <input type="number" id="gamma" placeholder="gamma" onchange="changeGamma()" min="0.1" step="0.05" value="0.5">
+    </div>
+    <div class="force">
+        <p><label>Network properties</label></p>
+        <div class="cell">
+            <label>Nodes count</label>
+            <input type="number" id="nodesInput" placeholder="nodesCount" onchange="changeNodes()" min="2" value="50">
+        </div>
+        <div class="cell">
+            <label>Links count</label>
+            <input type="number" id="linksInput" placeholder="linksCount" onchange="changeLinks()" min="1" value="50">
+        </div>
+        <div class="cell">
+            <label>m</label>
+            <input type="number" id="m" placeholder="m" onchange="changeM()" min="1" value="3">
+        </div>
 
     </div>
-
-<!--    <div class="force alpha">-->
-<!--        <p><label id="a">alpha</label> Simulation activity</p>-->
-<!--        <div class="alpha_bar" onclick="updateAll();"><div id="alpha_value"></div></div>-->
-<!--    </div>-->
     <div class="force">
-        <p><label>center</label> Shifts the view, so the graph is centered at this location.</p>
+        <p><label>Process coefficients</label></p>
+        <div class="cell">
+            <label>Initial infected</label>
+            <input type="number" id="initial_infected" placeholder="Initial infected" onchange="changeInitInfected()"
+                   min="1" value="2">
+        </div>
+        <div class="cell">
+            <label>Recovering day</label>
+            <input type="number" id="recovering_start_day" placeholder="Recovering start day"
+                   onchange="changeRecoveringDay()" min="1" value="2">
+        </div>
+        <div class="cell">
+            <label>β</label>
+            <input type="number" id="beta" placeholder="beta" onchange="changeBeta()" min="0.1" max="1" step="0.05" value="0.9">
+        </div>
+        <div class="cell">
+            <label>γ</label>
+            <input type="number" id="gamma" placeholder="gamma" onchange="changeGamma()" min="0.1" max="1" step="0.05" value="0.5">
+        </div>
+
+    </div>
+    <div class="force">
+
         <label>
             <output id="center_XSliderOutput">.33</output>
-            <input type="range" min="0" max="1" value=".33" step="0.01" oninput="d3.select('#center_XSliderOutput').text(value); forceProperties.center.x=value; updateAll();">
+            <input type="range" min="0" max="1" value=".33" step="0.01"
+                   oninput="d3.select('#center_XSliderOutput').text(value); forceProperties.center.x=value; updateAll();">
         </label>
         <label>
             y
             <output id="center_YSliderOutput">.38</output>
-            <input type="range" min="0" max="1" value=".38" step="0.01" oninput="d3.select('#center_YSliderOutput').text(value); forceProperties.center.y=value; updateAll();">
+            <input type="range" min="0" max="1" value=".38" step="0.01"
+                   oninput="d3.select('#center_YSliderOutput').text(value); forceProperties.center.y=value; updateAll();">
         </label>
     </div>
 
     <div class="force">
-        <p><label><input type="checkbox" checked onchange="forceProperties.charge.enabled = this.checked; updateAll();"> charge</label> Attracts (+) or repels (-) nodes to/from each other.</p>
+        <p><label><input type="checkbox" checked onchange="forceProperties.charge.enabled = this.checked; updateAll();">
+            charge</label> Attracts (+) or repels (-) nodes to/from each other.</p>
         <label title="Negative strength repels nodes. Positive strength attracts nodes.">
             strength
             <output id="charge_StrengthSliderOutput">-30</output>
-            <input type="range" min="-200" max="50" value="-30" step=".1" oninput="d3.select('#charge_StrengthSliderOutput').text(value); forceProperties.charge.strength=value; updateAll();">
+            <input type="range" min="-200" max="50" value="-30" step=".1"
+                   oninput="d3.select('#charge_StrengthSliderOutput').text(value); forceProperties.charge.strength=value; updateAll();">
         </label>
         <label title="Minimum distance where force is applied">
             distanceMin
             <output id="charge_distanceMinSliderOutput">1</output>
-            <input type="range" min="0" max="50" value="1" step=".1" oninput="d3.select('#charge_distanceMinSliderOutput').text(value); forceProperties.charge.distanceMin=value; updateAll();">
+            <input type="range" min="0" max="50" value="1" step=".1"
+                   oninput="d3.select('#charge_distanceMinSliderOutput').text(value); forceProperties.charge.distanceMin=value; updateAll();">
         </label>
         <label title="Maximum distance where force is applied">
             distanceMax
             <output id="charge_distanceMaxSliderOutput">2000</output>
-            <input type="range" min="0" max="2000" value="2000" step=".1" oninput="d3.select('#charge_distanceMaxSliderOutput').text(value); forceProperties.charge.distanceMax=value; updateAll();">
+            <input type="range" min="0" max="2000" value="2000" step=".1"
+                   oninput="d3.select('#charge_distanceMaxSliderOutput').text(value); forceProperties.charge.distanceMax=value; updateAll();">
         </label>
     </div>
 
-<!--    <div class="force">-->
-<!--        <p><label><input type="checkbox" checked onchange="forceProperties.collide.enabled = this.checked; updateAll();"> collide</label> Prevents nodes from overlapping</p>-->
-<!--        <label>-->
-<!--            strength-->
-<!--            <output id="collide_StrengthSliderOutput">.7</output>-->
-<!--            <input type="range" min="0" max="2" value=".7" step=".1" oninput="d3.select('#collide_StrengthSliderOutput').text(value); forceProperties.collide.strength=value; updateAll();">-->
-<!--        </label>-->
-<!--        <label title="Size of nodes">-->
-<!--            radius-->
-<!--            <output id="collide_radiusSliderOutput">5</output>-->
-<!--            <input type="range" min="0" max="100" value="5" step="1" oninput="d3.select('#collide_radiusSliderOutput').text(value); forceProperties.collide.radius=value; updateAll();">-->
-<!--        </label>-->
-<!--        <label title="Higher values increase rigidity of the nodes (WARNING: high values are computationally expensive)">-->
-<!--            iterations-->
-<!--            <output id="collide_iterationsSliderOutput">1</output>-->
-<!--            <input type="range" min="1" max="10" value="1" step="1" oninput="d3.select('#collide_iterationsSliderOutput').text(value); forceProperties.collide.iterations=value; updateAll();">-->
-<!--        </label>-->
-<!--    </div>-->
-
     <div class="force">
-        <p><label><input type="checkbox" checked onchange="forceProperties.link.enabled = this.checked; updateAll();"> link</label> Sets link length</p>
+        <p><label><input type="checkbox" checked onchange="forceProperties.link.enabled = this.checked; updateAll();">
+            link</label> Sets link length</p>
         <label title="The force will push/pull nodes to make links this long">
             distance
             <output id="link_DistanceSliderOutput">30</output>
-            <input type="range" min="0" max="100" value="30" step="1" oninput="d3.select('#link_DistanceSliderOutput').text(value); forceProperties.link.distance=value; updateAll();">
+            <input type="range" min="0" max="100" value="30" step="1"
+                   oninput="d3.select('#link_DistanceSliderOutput').text(value); forceProperties.link.distance=value; updateAll();">
         </label>
         <label title="Higher values increase rigidity of the links (WARNING: high values are computationally expensive)">
             iterations
             <output id="link_IterationsSliderOutput">1</output>
-            <input type="range" min="1" max="10" value="1" step="1" oninput="d3.select('#link_IterationsSliderOutput').text(value); forceProperties.link.iterations=value; updateAll();">
+            <input type="range" min="1" max="10" value="1" step="1"
+                   oninput="d3.select('#link_IterationsSliderOutput').text(value); forceProperties.link.iterations=value; updateAll();">
         </label>
     </div>
 </div>
@@ -121,3 +139,22 @@
 <script src="interactions.js"></script>
 </body>
 </html>
+
+<!--    <div class="force">-->
+<!--        <p><label><input type="checkbox" checked onchange="forceProperties.collide.enabled = this.checked; updateAll();"> collide</label> Prevents nodes from overlapping</p>-->
+<!--        <label>-->
+<!--            strength-->
+<!--            <output id="collide_StrengthSliderOutput">.7</output>-->
+<!--            <input type="range" min="0" max="2" value=".7" step=".1" oninput="d3.select('#collide_StrengthSliderOutput').text(value); forceProperties.collide.strength=value; updateAll();">-->
+<!--        </label>-->
+<!--        <label title="Size of nodes">-->
+<!--            radius-->
+<!--            <output id="collide_radiusSliderOutput">5</output>-->
+<!--            <input type="range" min="0" max="100" value="5" step="1" oninput="d3.select('#collide_radiusSliderOutput').text(value); forceProperties.collide.radius=value; updateAll();">-->
+<!--        </label>-->
+<!--        <label title="Higher values increase rigidity of the nodes (WARNING: high values are computationally expensive)">-->
+<!--            iterations-->
+<!--            <output id="collide_iterationsSliderOutput">1</output>-->
+<!--            <input type="range" min="1" max="10" value="1" step="1" oninput="d3.select('#collide_iterationsSliderOutput').text(value); forceProperties.collide.iterations=value; updateAll();">-->
+<!--        </label>-->
+<!--    </div>-->
