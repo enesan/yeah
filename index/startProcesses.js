@@ -15,7 +15,7 @@ function startProcesses(){
             coloringCircles();
             markPointsForInfecting();
             infect();
-            if(label >= day) {
+            if(label >= day - 1) {
                 let recoveringFunction = backToR();
                 //backToS();
                 // backToR();
@@ -31,9 +31,4 @@ function pause() {
    pauseFlag = (pauseFlag === false ? true : false);
 }
 
-function restartProcesses() {
-    document.getElementById("myChart").innerHTML = ""
-    pauseFlag = false;
-    label = 0;
-}
 

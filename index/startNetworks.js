@@ -3,34 +3,38 @@ let graphData = {
     "links": []
 };
 
-let nodesCount1 = 10;
-let linksCount = 100;
-let startInfected = 2;
+NetworkAbstract.nodesCount = document.getElementById("nodesInput").value;
+let linksCount = document.getElementById("linksInput").value;
+let initialInfected = document.getElementById("initial_infected").value;
 let infectedArray = [];
-let m = 5
-
+let m = document.getElementById("m").value;
 let beta = 0.7;
 let gamma = 0.4;
+let networkModel = () => {
+    let net = document.getElementById("network_choice").options.selectedIndex;
+    switch (net) {
+        case 0: return new GnmNetwork(linksCount);
+        case 1: return new BarabasiNetwork(m);
+    }
+}
 
 
-NetworkAbstract.nodesCount = nodesCount1;
 
-//let net = new gnmNetwork(linksCount);
 
 function initialInfect() {
     if(infectedArray.length > 0) infectedArray = [];
-    for (let i = 0; i < startInfected; i++) {
-        let potentialInfect = Math.trunc(Math.random() * nodesCount1);
+    for (let i = 0; i < initialInfected; i++) {
+        let potentialInfect = Math.trunc(Math.random() * NetworkAbstract.nodesCount);
         if (!infectedArray.includes(potentialInfect)) {
             infectedArray.push(potentialInfect)
         } else {
-            infectedArray.push(Math.trunc(Math.random() * nodesCount1))
+            infectedArray.push(Math.trunc(Math.random() * NetworkAbstract.nodesCount))
         }
     }
 }
 
 function makeNodes() {
-    for (let i = 0; i < nodesCount1; i++) {
+    for (let i = 0; i < NetworkAbstract.nodesCount; i++) {
         if (infectedArray.includes(i)) {
             graphData.nodes.push({
                 "id": i,

@@ -27,7 +27,7 @@ class Chartila extends ChartsClass {
             }, {
                 label: 'Recovered',
                 data: Chartila.recoveredData,
-                borderColor: "yellowgreen",
+                borderColor: "LawnGreen",
                 fill: false,
                 cubicInterpolationMode: 'default',
                 tension: 0.3

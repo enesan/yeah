@@ -48,11 +48,9 @@ forceProperties = {
 
 // load the data
 function loadData() {
-    console.log("graphdata",graphData)
     graph = graphData;
     initializeDisplay();
     initializeSimulation();
-
 }
 
 loadData.call();
@@ -201,6 +199,6 @@ const domLinks = document.getElementsByTagName("line");
 function coloringCircles() {
     for (let element of domNodes) {
         element.style.fill = element.__data__.health === 0 ? "blue" :
-            element.__data__.health === 1 ? "red" : "yellowgreen";
+            element.__data__.health === 1 ? "red" : "LawnGreen";
     }
 }

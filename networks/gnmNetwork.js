@@ -1,4 +1,4 @@
-class gnmNetwork extends NetworkAbstract {
+class GnmNetwork extends NetworkAbstract {
 
     #nodesCount = 50;
     #helperAntiCollision;

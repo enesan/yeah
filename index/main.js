@@ -1,6 +1,4 @@
 window.onload = start;
-let net = new BarabasiNetwork(m);
-
 
 function start() {
    graphData = {
@@ -10,11 +8,11 @@ function start() {
 
     initialInfect();
     makeNodes();
-
-    net.makeLinks();
+    networkModel().makeLinks();
     initSvg();
     loadData();
     DistributionChart.createChart();
     Chartila.createChart();
     startProcesses();
 }
+

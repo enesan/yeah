@@ -6,9 +6,9 @@ class DistributionChart extends ChartsClass {
 
     static _data = {
         datasets: [{
-            label: 'Scatter Dataset',
+            label: 'Degree distribution',
             data: this.#dataArray,
-            backgroundColor: 'rgb(55, 99, 132)'
+            backgroundColor: 'rgb(255, 99, 132)'
         }],
     };
 
@@ -27,9 +27,13 @@ class DistributionChart extends ChartsClass {
                 responsive: false,
                 scales: {
                     x: {
-                        //type: 'logarithmic',
+                        type: 'linear',
                         position: 'bottom',
                         max: Math.max(...DistributionChart.#graphDegrees) + 10
+                    },
+                    y:{
+                        type: 'linear',
+                        max: this.#chooseMaxY() + 0.1
                     }
                 }
             }
@@ -48,6 +52,14 @@ class DistributionChart extends ChartsClass {
                 .filter(x => x === i).length / this.#graphDegrees.length;
             this._data.datasets[0].data.push({x: i, y: fraction});
         }
+    }
+
+    static #chooseMaxY(){
+        let maxValue = 0;
+        for(let o of this._data.datasets[0].data) {
+            if(o.y > maxValue) maxValue = o.y
+        }
+        return maxValue;
     }
 
 }

@@ -6,6 +6,11 @@ class NetworkAbstract {
     static set nodesCount(value) {
         NetworkAbstract._nodesCount = value;
     }
+
+    static get nodesCount() {
+        return this._nodesCount;
+    }
+
     static get degrees() {
         return NetworkAbstract._degrees;
     }

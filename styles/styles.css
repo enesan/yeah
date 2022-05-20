@@ -1,0 +1,14 @@
+#myChart{
+    position: fixed;
+    /*border: purple solid 1px;*/
+    /*height: 600px;*/
+    right: 0px;
+    bottom: 0px;
+}
+
+#distribution{
+    position: fixed;
+    /*border: purple solid 1px;*/
+    right: 0px;
+    top: 0px;
+}

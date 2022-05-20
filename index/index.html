@@ -2,21 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="en">
-        <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Visualizer</title>
+    <link rel="stylesheet" href="../styles/d3Styles.css">
+    <link rel="stylesheet" href="../styles/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
 </head>
 <body>
 <div class="controls">
-    <button id="btnPause" onclick="pause()">Пауза</button>
-    <button id="btnReload" onclick="start()">перезагрузка</button>
-        <input type="number" id="nodes" placeholder="nodesCount" onchange="fillNodes()" min="1" value="44">
-        <input type="number" id="links" placeholder="linksCount" min="1">
+    <div class="force">
+        <button id="btnPause" onclick="pause()">Пауза</button>
+        <button id="btnReload" onclick="start()">перезагрузка</button>
+        <select id="network_choice" onchange="chooseNetwork()">
+            <option value="rnd">Erdyos-Renyi (Gnm)</option>
+            <option value="ba">Barabasi-Albert (linear PA)</option>
+        </select>
+        <input type="number" id="nodesInput" placeholder="nodesCount" onchange="changeNodes()" min="2" value="50">
+        <input type="number" id="linksInput" placeholder="linksCount" onchange="changeLinks()" min="1" value="50">
+        <input type="number" id="m" placeholder="m" onchange="changeM()" min="1" value="3">
+        <input type="number" id="initial_infected" placeholder="Initial infected" onchange="changeInitInfected()" min="1" value="2">
+        <input type="number" id="recovering_start_day" placeholder="Recovering start day" onchange="changeRecoveringDay()" min="1" value="2">
+
+    </div>
 
 <!--    <div class="force alpha">-->
 <!--        <p><label id="a">alpha</label> Simulation activity</p>-->
@@ -89,7 +96,7 @@
 </div>
 <svg id="svgI"></svg>
 <canvas id="myChart" width="600"></canvas>
-<canvas id="distribution" style="border: 1px blue solid" width="600"></canvas>
+<canvas id="distribution" width="600"></canvas>
 
 <script src="../networks/abstractNetwork.js"></script>
 <script src="../networks/barabasiNetwork.js"></script>
@@ -104,5 +111,6 @@
 <script src="../models/recovering.js"></script>
 <script src="../index/startProcesses.js"></script>
 <script src="main.js"></script>
+<script src="interactions.js"></script>
 </body>
 </html>
