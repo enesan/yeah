@@ -33,6 +33,7 @@ select{
 .tabs{
     background-color: #fafafa;
     display: flex;
+    border-radius: 10px;
 }
 
 .tabs button {
@@ -41,6 +42,7 @@ select{
     cursor: pointer;
     padding: 8px;
     transition: 0.3s;
+    border-radius: 5px;
 }
 
 .tabs button:hover{
