@@ -1,4 +1,4 @@
-class Chartila extends ChartsClass {
+class Chartila extends AbstractChart {
    static _ctx = document.getElementById('myChart');
 
     static labels = [];

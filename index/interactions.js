@@ -41,7 +41,7 @@ function changeBeta() {
 }
 
 function changeGamma() {
-    beta = document.getElementById("gamma").value;
+    gamma = document.getElementById("gamma").value;
     start();
 }
 

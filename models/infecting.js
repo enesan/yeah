@@ -1,6 +1,7 @@
 let ill = [];
 
 function infect() {
+
     for (let element of ill) {
         let potentialIll = Array.from(domNodes).filter(a => a.__data__.id == element);
 
@@ -12,7 +13,6 @@ function infect() {
 
 function markPointsForInfecting() {
     const env = environmentGathering();
-
     if (beta == 1) {
         for (let key in env) {
             ill = ill.concat(env[key]);
@@ -27,6 +27,7 @@ function markPointsForInfecting() {
         }
     }
     ill = Array.from(new Set(ill));
+    console.log("infecting", ill)
 }
 
 

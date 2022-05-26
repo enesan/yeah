@@ -1,4 +1,4 @@
-class ChartsClass {
+class AbstractChart {
 
     static _ctx;
     static _data = {};

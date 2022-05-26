@@ -5,23 +5,23 @@ let recoveringFunction = () => {
     switch (selectedProcess) {
         case 0: return;
         case 1:
-            backToS();
+            backTo(0);
             break;
         case 2:
-            backToR();
+            backTo(2);
             break;
     }
 };
 
-let intervalSIR;
+let intervalProcess;
 function startProcesses(){
-    if(intervalSIR) {
-        clearInterval(intervalSIR);
+    if(intervalProcess) {
+        clearInterval(intervalProcess);
     }
     let label = 0;
-    intervalSIR = setInterval(() => {
+    intervalProcess = setInterval(() => {
         if (illCount() == domNodes.length || illCount() == 0) {
-            clearInterval(intervalSIR)
+            clearInterval(intervalProcess)
         }
         if (pauseFlag == false) {
             Chartila.healthyData.push(healthyCount())

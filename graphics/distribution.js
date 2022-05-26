@@ -1,9 +1,17 @@
-class DistributionChart extends ChartsClass {
+class DistributionChart extends AbstractChart {
     static _ctx = document.getElementById('distribution');
 
     static #dataArray = []
     static #graphDegrees = []
     static #scale = "linear";
+
+    static _data = {
+        datasets: [{
+            label: 'Degree distribution',
+            data: this.#dataArray,
+            backgroundColor: 'rgb(255, 99, 132)'
+        }],
+    };
 
     static get scale() {
         return this.#scale;
@@ -14,13 +22,7 @@ class DistributionChart extends ChartsClass {
         this.createChart();
     }
 
-    static _data = {
-        datasets: [{
-            label: 'Degree distribution',
-            data: this.#dataArray,
-            backgroundColor: 'rgb(255, 99, 132)'
-        }],
-    };
+
 
 
     static createChart() {
